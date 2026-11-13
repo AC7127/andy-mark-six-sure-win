@@ -152,6 +152,7 @@ async function sync(){
       window.__LAST_WIN__ = d.lastDraw.numbers; window.__LAST_EXTRA__ = d.lastDraw.extra;
     }
   }catch(e){ document.getElementById('syncStatus').textContent="用硬編碼最新 (Function未就緒) - 上期 11/12 20 24 33 37 42 46+13 下期 11/15 $8,000,000"; }
-}}catch(e){document.getElementById('syncStatus').textContent="用硬編碼最新 - 上期 11/07 11 14 17 21 22 29+40 下期 11/10 $20,000,000";}}
-load(); sync(); renderDiary(); setInterval(sync, 5*60*1000); // 每5分鐘自動再抓一次 currentPicks=randPicks(); render();
+}
+load(); sync(); renderDiary(); setInterval(sync, 5*60*1000); // 每5分鐘自動再抓一次
+currentPicks=randPicks(); render();
 </script></body></html>
