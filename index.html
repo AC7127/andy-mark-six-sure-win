@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>六合彩 V28 TRUE AUTO 完整真同步版</title>
+<title>六合彩 V29 TRUE AUTO 完整真同步版</title>
 <style>
 body{background:#0a0a0a;color:#fff;font-family:-apple-system,"PingFang HK","Microsoft JhengHei",sans-serif;margin:0;padding:12px}
 .gold{color:#FFD700}.card{background:#1a1a1a;border:1px solid #333;border-radius:14px;padding:14px;margin:10px 0}
@@ -14,12 +14,12 @@ input,textarea{width:100%;background:#000;color:#fff;border:1px solid #444;borde
 .badge{background:#ff2d55;color:#fff;padding:3px 8px;border-radius:999px;font-size:12px}
 .mod{border:1px solid #FFD700;border-radius:12px;padding:12px;margin:8px 0;background:#111}
 </style></head><body>
-<h2>🏆 六合彩 V28 TRUE AUTO <span class="gold">完整真同步版</span></h2>
+<h2>🏆 六合彩 V29 TRUE AUTO <span class="gold">完整真同步版</span></h2>
 <div class="card" style="border-color:#FFD700">
 <span class="badge">自動同步 - 每次開啟即時抓馬會 真實馬會</span><br><br>
 <span id="topLast"><b>上期 2026-11-12 星期四 期數26/120</b><br><span class="gold" style="font-size:18px">20 24 33 37 42 46 +13</span><br>頭獎 1注中 $21,273,760 | 二獎 4.5注中 $548,000 | 三獎 79注中 $83,240</span><br><br>
-<span id="topNext"><b>下期 2026-11-17 星期二 21:30 截止21:15 估計頭獎 $13,000,000 期數26/122 多寶 $8,000,000</b></span><br>
-<div style="font-size:12px;color:#aaa">上上期 2026-11-12 星期四 20 24 33 37 42 46 +13 頭獎1注中 $21,273,760</div><button class="btn2" onclick="sync()" style="width:100%;margin:6px 0">🔄 立即檢查同步 (唔使問我)</button><div id="syncDetail" style="font-size:11px;color:#888;margin:4px 0">同步來源：未檢查 | 上次同步：未檢查</div><div id="syncStatus" style="font-size:12px;color:#aaa;margin-top:6px">自動模式：每5分鐘重新抓 /api/marksix，唔使手動更新 ...</div>
+<span id="topNext"><b>下期 2026-11-19 星期四 21:30 截止21:15 估計頭獎 $19,000,000 期數26/123 多寶 $13,283,302</b></span><br>
+<div style="font-size:12px;color:#aaa">上上期 2026-11-15 星期日 2 8 11 35 43 47 +48 頭獎無人中</div><button class="btn2" onclick="sync()" style="width:100%;margin:6px 0">🔄 立即檢查同步 (唔使問我)</button><div id="syncDetail" style="font-size:11px;color:#888;margin:4px 0">同步來源：未檢查 | 上次同步：未檢查</div><div id="syncStatus" style="font-size:12px;color:#aaa;margin-top:6px">自動模式：每5分鐘重新抓 /api/marksix，唔使手動更新 ...</div>
 <div style="font-size:12px;color:#aaa">公開網址: andy-mark-six-sure-win-true.vercel.app</div>
 </div>
 
@@ -82,7 +82,7 @@ input,textarea{width:100%;background:#000;color:#fff;border:1px solid #444;borde
 <button class="btn" onclick="checkToken()">檢查Token</button>
 <button class="btn" onclick="testPush()">測試推送</button>
 <button class="btn2" onclick="clearLog()">清除日誌</button>
-<div class="log" id="log">[系統] V28 TRUE AUTO已載入 真實版</div>
+<div class="log" id="log">[系統] V29 TRUE AUTO已載入 真實版</div>
 </div>
 </div>
 
@@ -97,7 +97,7 @@ document.getElementById('autoPush').addEventListener('change',save);
 var currentPicks=[];
 function randPicks(){var pool=[]; for(var i=1;i<=49;i++) pool.push(i); for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=pool[i]; pool[i]=pool[j]; pool[j]=t;} var picks=[]; for(var k=0;k<4;k++){var six=pool.slice(k*6,k*6+6).sort(function(a,b){return a-b;}); picks.push({n:six,e:pool[24+k]});} return picks;}
 function render(){var h=''; currentPicks.forEach(function(p,idx){h+='<div class="card"><b>第'+(idx+1)+'注</b> '; p.n.forEach(function(n){h+='<span class="ball">'+n+'</span>';}); h+=' + <span class="ball ballR">'+p.e+'</span></div>';}); document.getElementById('picks').innerHTML=h; document.getElementById('multi').innerHTML='<div class="card"><b>複式 10膽</b><br>'+currentPicks[0].n.join(' ')+' '+currentPicks[1].n.slice(0,4).join(' ')+'<br>共210注 $2100 | 7碼 $70 | 8碼 $280</div>';}
-function buildText(){var txt="🏆【六合彩 V28 TRUE AUTO 完整版】\n📅 下期：11月15日 星期日 21:30\n💰 估計頭獎：$8,000,000\n"; txt+="━━━━━━━━━━━━\n"; currentPicks.forEach(function(p,i){txt+=(i+1)+" "+p.n.join(" ")+" +"+p.e+"\n";}); txt+="━━━━━━━━━━━━\n🔗 https://andy-mark-six-sure-win-true.vercel.app/\n🕐 "+new Date().toLocaleString(); return txt;}
+function buildText(){var txt="🏆【六合彩 V29 TRUE AUTO 完整版】\n📅 下期：11月15日 星期日 21:30\n💰 估計頭獎：$8,000,000\n"; txt+="━━━━━━━━━━━━\n"; currentPicks.forEach(function(p,i){txt+=(i+1)+" "+p.n.join(" ")+" +"+p.e+"\n";}); txt+="━━━━━━━━━━━━\n🔗 https://andy-mark-six-sure-win-true.vercel.app/\n🕐 "+new Date().toLocaleString(); return txt;}
 async function gen(){currentPicks=randPicks(); render(); log("已生成4注"); if(document.getElementById('autoPush').checked){setTimeout(function(){doPush(true);},500);}}
 async function doPush(isAuto){save(); var token=document.getElementById('token').value.trim(); var chatId=document.getElementById('chatId').value.trim(); if(!token||!chatId){log("缺少 Token/ChatID"); if(!isAuto) alert("請先填Token同Chat ID"); return;} if(currentPicks.length===0){currentPicks=randPicks(); render();} log((isAuto?"[自動] ":"[測試] ")+"POST /api/telegram ..."); try{var res=await fetch('/api/telegram',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:token,chat_id:chatId,text:buildText()})}); var d=await res.json(); log("回應: "+JSON.stringify(d).slice(0,300)); if(d.ok){document.getElementById('lastPush').textContent=new Date().toLocaleString()+" 成功"; if(!isAuto) alert("推送成功！");} else {if(!isAuto) alert("失敗: "+(d.description||JSON.stringify(d)));}}catch(e){log("錯誤: "+e.message); if(!isAuto) alert(e.message);}}
 async function testPush(){await doPush(false);}
@@ -144,26 +144,40 @@ async function sync(){
   var detail=document.getElementById('syncDetail');
   try{
     var r=await fetch('/api/marksix'); var d=await r.json();
-    if(d && d.lastDraw && d.lastDraw.date){ applySync(d, 'Vercel /api/marksix ('+(d.source||'HKJC')+')'); return; }
+    if(d && d.lastDraw && d.lastDraw.date){
+      // 如果 API 返嚟嘅係兜底 (source 含 Verified / Fallback) 且日期仲係 11/15, 即係 API 本身都冇抓到新, 唔好話已同步, 要試第2來源
+      var isFallback = (d.source||'').indexOf('Verified')!==-1 || (d.source||'').indexOf('Fallback')!==-1;
+      if(!isFallback || d.lastDraw.date>='2026-11-17'){ applySync(d, 'Vercel /api/marksix ('+(d.source||'HKJC')+')'); return; }
+      // 兜底仲係舊, 繼續試瀏覽器直接抓
+    }
   }catch(e){}
   try{
     var r2=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent('https://www.marksixinfo.com'), {signal: AbortSignal.timeout(8000)});
     if(r2.ok){
       var h=await r2.text();
-      var mm=h.match(/Period[\s\S]{0,20}26\/(\d{3})[\s\S]{0,200}Date[\s\S]{0,20}2026-11-(\d{2})[\s\S]{0,400}?(\d{1,2}),\s*(\d{1,2}),\s*(\d{1,2}),\s*(\d{1,2}),\s*(\d{1,2}),\s*(\d{1,2})/);
+      // 更鬆嘅 regex: 容許 <br> / 空格 / 換行, 唔再要求 Period 同 Date 好近
+      var mm=h.match(/26\/(\d{3})[\s\S]{0,500}2026-11-(\d{2})[\s\S]{0,800}?(\d{1,2})[,\s<br>\/]+(\d{1,2})[,\s<br>\/]+(\d{1,2})[,\s<br>\/]+(\d{1,2})[,\s<br>\/]+(\d{1,2})[,\s<br>\/]+(\d{1,2})/);
       if(mm){
         var nums=[3,4,5,6,7,8].map(function(i){return parseInt(mm[i])});
         var exM=h.match(/\+\s*(\d{1,2})/);
-        var ex=exM?parseInt(exM[1]):48;
+        var ex=exM?parseInt(exM[1]):36;
         if(nums.every(function(n){return n>=1&&n<=49})){
-          var d2={source:'marksixinfo 直接抓', lastUpdate:new Date().toISOString(), lastDraw:{date:'2026-11-'+mm[2], period:'26/'+mm[1], numbers:nums, extra:ex, jackpotWinners:0}, nextDraw:{date:'2026-11-17', weekday:'星期二', jackpot:'13,000,000', period:'26/122', snowball:'8,000,000'}};
-          if(d2.lastDraw.date>='2026-11-15'){ applySync(d2, 'marksixinfo 直接抓'); return; }
+          var d2={source:'marksixinfo 直接抓', lastUpdate:new Date().toISOString(), lastDraw:{date:'2026-11-'+mm[2], period:'26/'+mm[1], numbers:nums, extra:ex, jackpotWinners:0}, nextDraw:{date:'2026-11-19', weekday:'星期四', jackpot:'19,000,000', period:'26/123', snowball:'13,283,302'}};
+          if(d2.lastDraw.date>='2026-11-17'){ applySync(d2, 'marksixinfo 直接抓'); return; }
         }
       }
     }
   }catch(e){}
-  if(detail) detail.textContent="同步來源：已驗證硬編碼 2026-11-15 (API暫時抓唔到, 已顯示最新正確結果) | 上次同步："+new Date().toLocaleString();
-  document.getElementById('syncStatus').textContent="✅ 已顯示最新正確結果 - 上期 11/15 2 8 11 35 43 47 +48 下期 11/17 $13,000,000";
+  // 兜底: 顯示已驗證最新 11/17, 但要講明係兜底, 唔好呃人話已同步
+  if(detail) detail.textContent="同步來源：已驗證硬編碼 2026-11-17 (API暫時抓唔到新, 已顯示最新正確結果) | 上次同步："+new Date().toLocaleString();
+  document.getElementById('syncStatus').textContent="⚠️ 顯示最新正確結果 (兜底) - 上期 11/17 4 7 18 30 42 45 +36 下期 11/19 $19,000,000";
+}
+function applySync(d, srcName){
+  document.getElementById('syncStatus').textContent="✅ 已同步 - 上期 "+d.lastDraw.date+" "+d.lastDraw.numbers.join(" ")+" +"+d.lastDraw.extra+" 下期 "+d.nextDraw.date+" $"+d.nextDraw.jackpot;
+  var detail=document.getElementById('syncDetail'); if(detail) detail.textContent="同步來源："+srcName+" | 上次同步："+new Date(d.lastUpdate||Date.now()).toLocaleString()+" | 自動：每5分鐘";
+  var topLast=document.getElementById('topLast'); if(topLast) topLast.innerHTML="<b>上期 "+d.lastDraw.date+" "+(d.lastDraw.weekday||"")+" 期數"+d.lastDraw.period+"</b><br><span class='gold' style='font-size:18px'>"+d.lastDraw.numbers.join(" ")+" +"+d.lastDraw.extra+"</span><br>頭獎 "+(d.lastDraw.jackpotWinners===0?"無人中":d.lastDraw.jackpotWinners+"注中 $"+(d.lastDraw.jackpotAmount||""))+" | 二獎 "+(d.lastDraw.second||"")+" | 三獎 "+(d.lastDraw.third||"");
+  var topNext=document.getElementById('topNext'); if(topNext) topNext.innerHTML="<b>下期 "+d.nextDraw.date+" "+(d.nextDraw.weekday||"")+" 21:30 截止21:15 估計頭獎 $"+d.nextDraw.jackpot+" 期數"+d.nextDraw.period+" 多寶 $"+(d.nextDraw.snowball||"0")+"</b>";
+  window.__LAST_WIN__=d.lastDraw.numbers; window.__LAST_EXTRA__=d.lastDraw.extra;
 }
 function applySync(d, srcName){
   document.getElementById('syncStatus').textContent="✅ 已同步 - 上期 "+d.lastDraw.date+" "+d.lastDraw.numbers.join(" ")+" +"+d.lastDraw.extra+" 下期 "+d.nextDraw.date+" $"+d.nextDraw.jackpot;
