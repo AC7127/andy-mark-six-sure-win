@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>六合彩 V30 TRUE AUTO 完整真同步版</title>
+<title>六合彩 V31 TRUE AUTO 完整真同步版</title>
 <style>
 body{background:#0a0a0a;color:#fff;font-family:-apple-system,"PingFang HK","Microsoft JhengHei",sans-serif;margin:0;padding:12px}
 .gold{color:#FFD700}.card{background:#1a1a1a;border:1px solid #333;border-radius:14px;padding:14px;margin:10px 0}
@@ -14,10 +14,10 @@ input,textarea{width:100%;background:#000;color:#fff;border:1px solid #444;borde
 .badge{background:#ff2d55;color:#fff;padding:3px 8px;border-radius:999px;font-size:12px}
 .mod{border:1px solid #FFD700;border-radius:12px;padding:12px;margin:8px 0;background:#111}
 </style></head><body>
-<h2>🏆 六合彩 V30 TRUE AUTO <span class="gold">完整真同步版</span></h2>
+<h2>🏆 六合彩 V31 TRUE AUTO <span class="gold">完整真同步版</span></h2>
 <div class="card" style="border-color:#FFD700">
 <span class="badge">自動同步 - 每次開啟即時抓馬會 真實馬會</span><br><br>
-<span id="topLast"><b>上期 2026-11-19 星期四 期數26/123</b><br><span class='gold' style='font-size:18px'>12 18 32 45 47 49 +41</span><br>頭獎 無人中 (多寶滾存) | 二獎 1注中 $2,181,540 | 三獎 75注中 $77,560</span><br>頭獎 1注中 $21,273,760 | 二獎 4.5注中 $548,000 | 三獎 79注中 $83,240</span><br><br>
+<span id="topLast"><b>上期 2026-11-19 星期四 期數26/123</b><br><span class='gold' style='font-size:18px'>12 18 32 45 47 49 +41</span><br>頭獎 無人中 (多寶滾存) | 二獎 1注中 $2,181,540 | 三獎 75注中 $77,560</span><br><br>
 <span id="topNext"><b>下期 2026-11-24 星期二 21:30 截止21:15 估計頭獎 $68,000,000 (集氣加碼最高$80,000,000) 期數26/124 金多寶 $50,000,000</b><br><span style="font-size:11px;color:#FFD700">⚠️ 原定11月21日星期六攪珠取消，改為11月24日幸運二金多寶</span></span><br>
 <div style="font-size:12px;color:#aaa">上上期 2026-11-17 星期二 4 7 18 30 42 45 +36 頭獎無人中</div><button class="btn2" onclick="sync()" style="width:100%;margin:6px 0">🔄 立即檢查同步 (唔使問我)</button><div id="syncDetail" style="font-size:11px;color:#888;margin:4px 0">同步來源：未檢查 | 上次同步：未檢查</div><div id="syncStatus" style="font-size:12px;color:#aaa;margin-top:6px">自動模式：每5分鐘重新抓 /api/marksix，唔使手動更新 ...</div>
 <div style="font-size:12px;color:#aaa">公開網址: andy-mark-six-sure-win-true.vercel.app</div>
@@ -82,7 +82,7 @@ input,textarea{width:100%;background:#000;color:#fff;border:1px solid #444;borde
 <button class="btn" onclick="checkToken()">檢查Token</button>
 <button class="btn" onclick="testPush()">測試推送</button>
 <button class="btn2" onclick="clearLog()">清除日誌</button>
-<div class="log" id="log">[系統] V30 TRUE AUTO已載入 真實版</div>
+<div class="log" id="log">[系統] V31 TRUE AUTO已載入 真實版</div>
 </div>
 </div>
 
@@ -97,7 +97,7 @@ document.getElementById('autoPush').addEventListener('change',save);
 var currentPicks=[];
 function randPicks(){var pool=[]; for(var i=1;i<=49;i++) pool.push(i); for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=pool[i]; pool[i]=pool[j]; pool[j]=t;} var picks=[]; for(var k=0;k<4;k++){var six=pool.slice(k*6,k*6+6).sort(function(a,b){return a-b;}); picks.push({n:six,e:pool[24+k]});} return picks;}
 function render(){var h=''; currentPicks.forEach(function(p,idx){h+='<div class="card"><b>第'+(idx+1)+'注</b> '; p.n.forEach(function(n){h+='<span class="ball">'+n+'</span>';}); h+=' + <span class="ball ballR">'+p.e+'</span></div>';}); document.getElementById('picks').innerHTML=h; document.getElementById('multi').innerHTML='<div class="card"><b>複式 10膽</b><br>'+currentPicks[0].n.join(' ')+' '+currentPicks[1].n.slice(0,4).join(' ')+'<br>共210注 $2100 | 7碼 $70 | 8碼 $280</div>';}
-function buildText(){var txt="🏆【六合彩 V30 TRUE AUTO 完整版】\n📅 下期：11月15日 星期日 21:30\n💰 估計頭獎：$8,000,000\n"; txt+="━━━━━━━━━━━━\n"; currentPicks.forEach(function(p,i){txt+=(i+1)+" "+p.n.join(" ")+" +"+p.e+"\n";}); txt+="━━━━━━━━━━━━\n🔗 https://andy-mark-six-sure-win-true.vercel.app/\n🕐 "+new Date().toLocaleString(); return txt;}
+function buildText(){var txt="🏆【六合彩 V31 TRUE AUTO 完整版】\n📅 下期：11月15日 星期日 21:30\n💰 估計頭獎：$8,000,000\n"; txt+="━━━━━━━━━━━━\n"; currentPicks.forEach(function(p,i){txt+=(i+1)+" "+p.n.join(" ")+" +"+p.e+"\n";}); txt+="━━━━━━━━━━━━\n🔗 https://andy-mark-six-sure-win-true.vercel.app/\n🕐 "+new Date().toLocaleString(); return txt;}
 async function gen(){currentPicks=randPicks(); render(); log("已生成4注"); if(document.getElementById('autoPush').checked){setTimeout(function(){doPush(true);},500);}}
 async function doPush(isAuto){save(); var token=document.getElementById('token').value.trim(); var chatId=document.getElementById('chatId').value.trim(); if(!token||!chatId){log("缺少 Token/ChatID"); if(!isAuto) alert("請先填Token同Chat ID"); return;} if(currentPicks.length===0){currentPicks=randPicks(); render();} log((isAuto?"[自動] ":"[測試] ")+"POST /api/telegram ..."); try{var res=await fetch('/api/telegram',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:token,chat_id:chatId,text:buildText()})}); var d=await res.json(); log("回應: "+JSON.stringify(d).slice(0,300)); if(d.ok){document.getElementById('lastPush').textContent=new Date().toLocaleString()+" 成功"; if(!isAuto) alert("推送成功！");} else {if(!isAuto) alert("失敗: "+(d.description||JSON.stringify(d)));}}catch(e){log("錯誤: "+e.message); if(!isAuto) alert(e.message);}}
 async function testPush(){await doPush(false);}
