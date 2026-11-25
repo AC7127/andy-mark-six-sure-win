@@ -1,16 +1,12 @@
 name: MarkSix Auto Sync - 真自動同步 (唔使手動)
 
-# 點解要呢個? Vercel 淨係得你開網站先會抓, 抓唔到就跌返去舊兜底, 所以次次都要手動換日期。
-# 呢個 Action 唔使你開網站, 佢自己喺背後每15分鐘去抓, 抓到就寫入 data/marksix.json 並 commit, Vercel 就會自動用新 JSON。
-# 之後你開網站, 就算 HKJC 封咗 Vercel IP, 都仲有呢個最新 JSON 頂住。
+# V2 修復: 第一次跑冇 data/marksix.json 會失敗, 而家就算抓唔到都會用兜底開返個檔, 唔會再 fatal
 
 on:
   schedule:
-    # 攪珠日 (二/四/六) 香港時間 21:00-23:45, 每15分鐘抓一次 (UTC = HKT -8, 即 13:00-15:45 UTC)
     - cron: '*/15 13-15 * * 2,4,6'
-    # 平時每6小時抓一次, 確保下期頭獎都新
     - cron: '0 */6 * * *'
-  workflow_dispatch: # 手動撳都得
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -29,7 +25,6 @@ jobs:
           const fs = require('fs');
           (async()=>{
             let lastDraw=null, nextDraw=null, previousDraw=null, source='fallback';
-            // 1) 試 marksixinfo (最穩, 唔怕 HKJC 封 IP)
             try{
               const r = await fetch('https://www.marksixinfo.com', {headers:{'User-Agent':'Mozilla/5.0'}});
               const html = await r.text();
@@ -47,31 +42,35 @@ jobs:
                   console.log('抓到 marksixinfo:', lastDraw);
                 }
               }
-              // 下期: 試抓 Next Draw 區塊
               const nextM = html.match(/Next Draw[\s\S]{0,800}2026-11-(\d{2})[\s\S]{0,500}26\/(\d{3})/i);
               if(nextM){ nextDraw={date:'2026-11-'+nextM[1], weekday:'', time:'21:30', cutoff:'21:15', jackpot:'102,000,000', snowball:'75,529,811', period:'26/'+nextM[2]}; }
             }catch(e){ console.log('marksixinfo 失敗', e.message); }
-            // 2) 如果抓唔到, 用返 repo 入面舊 JSON 頂住, 唔好寫空嘢
             let old=null;
-            try{ old=JSON.parse(fs.readFileSync('data/marksix.json','utf8')); }catch(e){}
+            try{ old=JSON.parse(fs.readFileSync('data/marksix.json','utf8')); }catch(e){ try{ old=JSON.parse(fs.readFileSync('marksix.json','utf8')); console.log('用根目錄 marksix.json 做舊數據'); }catch(e2){} }
             if(!lastDraw && old && old.lastDraw){ lastDraw=old.lastDraw; nextDraw=old.nextDraw; previousDraw=old.previousDraw; source='keep-old (今次抓唔到, 保留上次成功)'; console.log('保留舊 JSON'); }
             if(lastDraw && old && old.lastDraw && lastDraw.date > old.lastDraw.date){ previousDraw=old.lastDraw; }
             else if(old && old.previousDraw){ previousDraw=old.previousDraw; }
-            // 3) 下期兜底: 如果上期係 11/24, 下期一定係 11/28 (11/26唔開)
+            // V2關鍵: 如果乜都冇 (第一次跑 + 抓唔到), 用已驗證兜底開檔, 唔好空手而回
+            if(!lastDraw){
+              console.log('乜都抓唔到 + 冇舊檔, 用 11/24 兜底開檔');
+              lastDraw={date:'2026-11-24', weekday:'星期二', period:'26/124', numbers:[1,20,26,28,35,41], extra:36, jackpotWinners:0, second:'6注中 $1,140,540', third:'190注中 $96,040'};
+              nextDraw={date:'2026-11-28', weekday:'星期六', time:'21:30', cutoff:'21:15', jackpot:'102,000,000', jackpotNote:'11/26唔開, 改星期六', snowball:'75,529,811', period:'26/125'};
+              previousDraw={date:'2026-11-19', weekday:'星期四', period:'26/123', numbers:[12,18,32,45,47,49], extra:41, jackpotWinners:0, second:'1注中 $2,181,540', third:'75注中 $77,560'};
+              source='fallback 11/24 (第一次跑, 之後會自動更新)';
+            }
             if(lastDraw && lastDraw.date==='2026-11-24' && (!nextDraw || nextDraw.date!=='2026-11-28')){
               nextDraw={date:'2026-11-28', weekday:'星期六', time:'21:30', cutoff:'21:15', jackpot:'102,000,000', jackpotNote:'11/26唔開, 改星期六', snowball:'75,529,811', period:'26/125'};
             }
-            if(!lastDraw){ console.log('乜都抓唔到, 唔寫檔案'); process.exit(0); }
             const out={source, lastUpdate:new Date().toISOString(), lastDraw, nextDraw, previousDraw};
             fs.mkdirSync('data',{recursive:true});
             fs.writeFileSync('data/marksix.json', JSON.stringify(out,null,2));
             console.log('寫入 data/marksix.json', out);
           })();
           "
-      - name: 有變先 Commit (冇變就唔好亂 commit)
+      - name: 有變先 Commit (有變就唔好亂 commit)
         run: |
           git config user.name "marksix-bot"
           git config user.email "bot@andy-mark-six.local"
-          git add data/marksix.json
-          git diff --cached --quiet || git commit -m "auto: 六合彩同步 $(date -u +'%Y-%m-%d %H:%M UTC') - 上期 $(node -e "console.log(JSON.parse(require('fs').readFileSync('data/marksix.json','utf8')).lastDraw.date)")"
+          git add data/marksix.json || echo "冇 data/marksix.json, 跳過"
+          git diff --cached --quiet && echo "冇變, 唔 commit" || git commit -m "auto: 六合彩同步 $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push || echo "冇嘢 push 或 push 失敗, 下次再試"
